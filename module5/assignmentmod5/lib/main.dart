@@ -23,6 +23,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
+          elevation: 70,
           centerTitle: true,
           backgroundColor: Colors.green,
           title: const Text('Home'),
