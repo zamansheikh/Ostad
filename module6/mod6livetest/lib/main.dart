@@ -22,32 +22,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
+          title: const Text('My Shopping List'),
           centerTitle: true,
-          backgroundColor: Colors.blue,
-          title: const Text('Profile'),
-        ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.account_circle, size: 100, color: Colors.green),
-                Text(
-                  'Jhone Doe',
-                  style: TextStyle(fontSize: 25, color: Colors.green),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Flutter Batch 4',
-                  style: TextStyle(fontSize: 22, color: Colors.blue),
-                ),
-              ],
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {},
             ),
+          ]),
+      body: ListView(
+        children: const [
+          ListTile(
+            leading: Icon(Icons.apple),
+            title: Text('Apples'),
           ),
-        ));
+          ListTile(
+            leading: Icon(Icons.food_bank),
+            title: Text('Bananas'),
+          ),
+          ListTile(
+            leading: Icon(Icons.food_bank),
+            title: Text('Bread'),
+          ),
+          ListTile(
+            leading: Icon(Icons.food_bank),
+            title: Text('Milk'),
+          ),
+          ListTile(
+            leading: Icon(Icons.egg),
+            title: Text('Eggs'),
+          ),
+        ],
+      ),
+    );
   }
 }
