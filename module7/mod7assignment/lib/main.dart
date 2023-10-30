@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
@@ -17,7 +17,21 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  //make product and price map
+  final Map<String, int> productList = {
+    'Product 1': 100,
+    'Product 2': 200,
+    'Product 3': 300,
+    'Product 4': 400,
+    'Product 5': 500,
+    'Product 6': 600,
+    'Product 7': 700,
+    'Product 8': 800,
+    'Product 9': 900,
+    'Product 10': 1000,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +39,52 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.blue,
-          title: const Text('Profile'),
+          title: const Text('Product List'),
         ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.account_circle, size: 100, color: Colors.green),
-                Text(
-                  'Jhone Doe',
-                  style: TextStyle(fontSize: 25, color: Colors.green),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Flutter Batch 4',
-                  style: TextStyle(fontSize: 22, color: Colors.blue),
-                ),
-              ],
-            ),
-          ),
+        body: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (BuildContext context, int index) {
+            final String productName = productList.keys.elementAt(index);
+            return Product(
+              productName: productName,
+              productPrice: '\$${productList[productName]}',
+              onTap: () {},
+            );
+          },
         ));
+  }
+}
+
+class Product extends StatelessWidget {
+  final String productName;
+  final String productPrice;
+  final void Function()? onTap;
+  const Product({
+    super.key,
+    required this.productName,
+    required this.productPrice,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListTile(
+        title: Text(productName),
+        subtitle: Text(productPrice),
+        onTap: onTap,
+        trailing: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Total Item: 1"),
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
